@@ -23,15 +23,9 @@ RUN set -ex; \
     ln -s /usr/include/freetype2/freetype.h /usr/include/freetype2/freetype/freetype.h; \
     \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr/include/freetype2/freetype; \
-    docker-php-ext-install gd mysqli opcache soap zip; \
+    docker-php-ext-install gd mysqli opcache soap zip phar intl; \
     \
     pecl install xdebug; \
-    docker-php-ext-enable xdebug; \
-    \
-    pecl install phar; \
-    docker-php-ext-install phar; \
-    \
-    pecl install intl; \
-    docker-php-ext-install intl
+    docker-php-ext-enable xdebug;
 
 EXPOSE 9000
