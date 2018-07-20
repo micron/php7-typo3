@@ -20,7 +20,6 @@ RUN set -ex; \
     rm -rf /var/lib/apt/lists/*; \
     mkdir -p /usr/include/freetype2/freetype; \
     apt-get remove -y libmagickwand-dev; \
-#    ln -s /usr/include/freetype2/freetype.h /usr/include/freetype2/freetype/freetype.h; \
     \
     docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr --with-freetype-dir=/usr/include/freetype2/freetype; \
     docker-php-ext-install gd mysqli opcache soap zip phar intl; \
