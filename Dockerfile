@@ -13,6 +13,7 @@ RUN set -ex; \
 	libxml2-dev \
         libmagickwand-dev \
         imagemagick \
+        socat \
     ; \
 
     pecl install imagick; \
@@ -34,5 +35,14 @@ RUN set -ex; \
     mv mhsendmail_linux_amd64 /usr/bin/mhsendmail; \
     chmod +x /usr/bin/mhsendmail; \
     echo 'sendmail_path = "/usr/bin/mhsendmail --smtp-addr=mailhog:1025"' > /usr/local/etc/php/conf.d/mailhog.ini
+
+RUN set -ex; \
+    \
+    curl -L -s -O https://github.com/nicolas-van/multirun/releases/download/0.3.0/multirun-ubuntu-0.3.0.tar.gz; \
+    tar zxvf multirun-ubuntu-0.3.0.tar.gz; \
+    mv multirun /bin; \
+    rm multirun-ubuntu-0.3.0.tar.gz
+
+CMD ["multirun", "php-fpm", "socat TCP-LISTEN:8088,fork TCP:application:80"]
 
 EXPOSE 9000
