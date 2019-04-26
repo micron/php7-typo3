@@ -1,4 +1,4 @@
-FROM php:7.2.17-fpm
+FROM php:7.3.4-fpm
 MAINTAINER miron.ogrodowicz@kreativrudel.de
 
 RUN set -ex; \
@@ -11,6 +11,7 @@ RUN set -ex; \
         libicu-dev \
         libfreetype6-dev \
 	libxml2-dev \
+	libzip-dev \
         libmagickwand-dev \
         imagemagick \
         socat \
